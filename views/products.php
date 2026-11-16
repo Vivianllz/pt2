@@ -27,7 +27,7 @@ ob_start();
          
         <hr>
  
-        <form action="" method="post" class="needs-validation" novalidate>
+        <form action="<?= BASE_URL ?>productcontroller/save" method="post" class="needs-validation" novalidate>
             <div class="row g-3">
                 <div class="col-md-3">
                     <label for="pid" class="form-label">Product ID <span class="text-danger" aria-hidden="true">*</span></label>
@@ -60,6 +60,7 @@ ob_start();
                         <option value="ABS">ABS</option>
                         <option value="POM">POM</option>
                     </select>
+                    //自己的
                 </div>
  
                 <div class="col-md-3">
@@ -70,6 +71,7 @@ ob_start();
                         <option value="Cherry">Cherry</option>
                         <option value="SA">SA</option>
                         <option value="DSA">DSA</option>
+                    //自己的
                     </select>
                 </div>
                  
@@ -109,12 +111,10 @@ ob_start();
                 <small class="text-muted">View and manage all products in the inventory</small>
             </div>
             <div class="col-auto">
-                <span class="badge bg-success">Total: 1 items</span>
-            </div>
+                <span class="badge bg-success">Total: <?php echo !empty($products) ? count($products) : 0; ?> items</span>
         </div>
- 
+    </div>
         <hr>
- 
         <div class="table-responsive">
             <table class="table table-striped table-hover">
                 <thead class="table-dark">
