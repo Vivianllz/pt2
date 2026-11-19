@@ -16,7 +16,7 @@ ob_start();
             <div class="col">
                 <h5 class="mb-0">
                     <i class="bi bi-pencil-square text-primary me-2"></i>
-                    Customer Form
+                    <?php echo isset($acustomer) ? 'Edit Customer' : 'Customer Form'; ?>
                 </h5>
                 <small class="text-muted">Fill in the details of a customer</small>
             </div>
@@ -27,32 +27,38 @@ ob_start();
          
         <hr>
  
-        <form action="" method="post" class="needs-validation" novalidate>
+        <form action="<?= BASE_URL ?>customercontroller/<?= isset($acustomer) ? 'update' : 'save' ?>" method="post" class="needs-validation" novalidate>
+        <?php if (isset($acustomer)): ?>
+        <input type="hidden" name="original_customer_num" value="<?php echo htmlspecialchars($acustomer['fld_customer_num']); ?>">
+        <?php endif; ?>
             <div class="row g-3">
                 <div class="col-md-3">
                     <label for="customer_num" class="form-label">Customer ID <span class="text-danger" aria-hidden="true">*</span></label>
-                    <input name="customer_num" id="customer_num" type="text" class="form-control" placeholder="Enter Customer ID" value="" required>
+                    <input name="customer_num" id="customer_num" type="text" class="form-control" placeholder="Enter Customer ID" value="<?php echo isset($acustomer) ? htmlspecialchars($acustomer['fld_customer_num']) : ''; ?>" required>
                 </div>
                 <div class="col-md-3">
                     <label for="customer_name" class="form-label">Name <span class="text-danger" aria-hidden="true">*</span></label>
-                    <input name="customer_name" id="customer_name" type="text" class="form-control" placeholder="Enter Customer Name" value="" required>
+                    <input name="customer_name" id="customer_name" type="text" class="form-control" placeholder="Enter Customer Name" value="<?php echo isset($acustomer) ? htmlspecialchars($acustomer['fld_customer_name']) : ''; ?>" required>
                 </div>
                 <div class="col-md-3">
                     <label for="customer_gender" class="form-label">Gender <span class="text-danger" aria-hidden="true">*</span></label>
+                    <?php
+                    $selectedGender = $acustomer['fld_customer_gender'] ?? '';
+                    ?>
                     <select name="customer_gender" id="customer_gender" class="form-select" required>
                         <option value="">Select Gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
+                        <option value="Male" <?= $selectedGender === 'Male' ? 'selected' : '' ?>>Male</option>
+                        <option value="Female" <?= $selectedGender === 'Female' ? 'selected' : '' ?>>Female</option>
                     </select>
                 </div>
                 <div class="col-md-3">
                     <label for="customer_phone" class="form-label">Phone Number <span class="text-danger" aria-hidden="true">*</span></label>
-                    <input name="customer_phone" id="customer_phone" class="form-control" placeholder="Enter Phone Number" required>
+                    <input name="customer_phone" id="customer_phone" class="form-control" placeholder="Enter Phone Number" value="<?php echo isset($acustomer) ? htmlspecialchars($acustomer['fld_customer_phone']) : ''; ?>" required>
                 </div>
  
                 <div class="col-md-3">
                     <label for="register_date" class="form-label">Register Date <span class="text-danger">*</span></label>
-                    <input name="register_date" id="register_date" type="date" class="form-control" required>
+                    <input name="register_date" id="register_date" type="date" class="form-control" value="<?php echo isset($acustomer) ? htmlspecialchars($acustomer['fld_customer_register_date']) : ''; ?>" required>
                 </div>
 
             </div>
@@ -60,8 +66,8 @@ ob_start();
             <hr class="mt-4 mb-3">
              
             <div>
-                <button type="submit" name="create" class="btn btn-primary">
-                    <i class="bi bi-save me-1"></i>Create
+                <button type="submit" name="<?= isset($acustomer) ? 'update' : 'create' ?>" class="btn btn-primary">
+                    <i class="bi bi-save me-1"></i><?= isset($acustomer) ? 'Update' : 'Create' ?>
                 </button>
                 <button type="reset" class="btn btn-secondary">
                     <i class="bi bi-arrow-counterclockwise me-1"></i>Clear
@@ -83,7 +89,7 @@ ob_start();
                 <small class="text-muted">View and manage all customers</small>
             </div>
             <div class="col-auto">
-                <span class="badge bg-success">Total: 1 items</span>
+                <span class="badge bg-success">Total: <?php echo !empty($customers) ? count($customers) : 0; ?> items</span>
             </div>
         </div>
  
@@ -102,25 +108,31 @@ ob_start();
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>C001</td>
-                        <td>John Doe</td>
-                        <td>Male</td>
-                        <td>012-3456789</td>
-                        <td>01-01-2026</td>
-                        <td>
-                            <a href="#" class="btn btn-sm btn-warning">
-                                <i class="bi bi-pencil"></i>
-                            </a>
-                            <a href="#" class="btn btn-sm btn-danger">
-                                <i class="bi bi-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="6" class="text-center">No customers found</td>
-                    </tr>
+                    <?php if (!empty($customers)): ?>
+                        <?php foreach ($customers as $customer): ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($customer['fld_customer_num']); ?></td>
+                                <td><?php echo htmlspecialchars($customer['fld_customer_name']); ?></td>
+                                <td><?php echo htmlspecialchars($customer['fld_customer_gender']); ?></td>
+                                <td><?php echo htmlspecialchars($customer['fld_customer_phone']); ?></td>
+                                <td><?php echo htmlspecialchars($customer['fld_customer_register_date']); ?></td>
+                                <td>
+                                    <a href="<?= BASE_URL ?>customercontroller/edit/<?= htmlspecialchars($customer['fld_customer_num']) ?>" class="btn btn-sm btn-warning">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <a href="<?= BASE_URL ?>customercontroller/delete/<?= htmlspecialchars($customer['fld_customer_num']) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure to delete?');">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="6" class="text-center">No customers found</td>
+                        </tr>
+                    <?php endif; ?>
                 </tbody>
+
             </table>
         </div>
     </div>
