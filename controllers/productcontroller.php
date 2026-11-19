@@ -17,6 +17,37 @@ class ProductController extends Controller {
         $this->model->create($data);
         $this->index();
     }
+
+    public function edit($id) {
+    $aproduct = $this->model->readById($id);
+ 
+    if (!$aproduct) {
+        exit;
+    }
+ 
+    $this->view("products", [
+        "aproduct" => $aproduct,
+        "products" => $this->model->readAll()
+    ]);
+    }
+
+    public function update() {
+    $data = $_POST;
+    $this->model->update($data);
+    
+    $this->index();
+    }
+
+    public function delete($id) {
+    $aproduct = $this->model->readById($id);
+    if (!$aproduct) {
+        exit;
+    }
+    
+    $this->model->delete($id);
+    $this->index();
+    }
+
 }
  
 ?>
