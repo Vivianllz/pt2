@@ -60,7 +60,7 @@ ob_start();
                         <option value="ABS">ABS</option>
                         <option value="POM">POM</option>
                     </select>
-                    //自己的
+                   <!--自己的-->
                 </div>
  
                 <div class="col-md-3">
@@ -71,7 +71,7 @@ ob_start();
                         <option value="Cherry">Cherry</option>
                         <option value="SA">SA</option>
                         <option value="DSA">DSA</option>
-                    //自己的
+                    <!--自己的-->
                     </select>
                 </div>
                  

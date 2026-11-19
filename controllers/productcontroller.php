@@ -11,7 +11,8 @@ class ProductController extends Controller {
         $records = $this->model->readAll();
         $this->view("products", ["products" => $records]);
     }
-        public function save() {
+    
+    public function save() {
         $data = $_POST;
         $this->model->create($data);
         $this->index();

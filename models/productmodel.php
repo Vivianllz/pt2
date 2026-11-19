@@ -21,11 +21,11 @@ public function readAll() {
 public function create($data) {
     $sql = "INSERT INTO tbl_products_a215514
             (fld_product_num, fld_product_name, fld_product_price,
-            fld_product_brand, fld_product_condition, fld_product_year,
+            fld_product_brand, fld_product_material, fld_product_profile,
             fld_product_quantity, fld_product_image)
             VALUES
             (:product_num, :product_name, :product_price,
-            :product_brand, :product_condition, :product_year,
+            :product_brand, :product_material, :product_profile,
             :product_quantity, :product_image)";
  
     $stmt = $this->db->prepare($sql);
@@ -34,8 +34,8 @@ public function create($data) {
     $product_name      = $data['product_name'];
     $product_price     = $data['product_price'];
     $product_brand     = $data['product_brand'];
-    $product_condition = $data['product_condition'];
-    $product_year      = $data['product_year'];
+    $product_material  = $data['product_material'];
+    $product_profile   = $data['product_profile'];
     $product_quantity  = $data['product_quantity'];
     $product_image     = $data['product_image'] ?? '';
  
@@ -43,8 +43,8 @@ public function create($data) {
     $stmt->bindValue(':product_name',      $product_name,      PDO::PARAM_STR);
     $stmt->bindValue(':product_price',     $product_price);
     $stmt->bindValue(':product_brand',     $product_brand,     PDO::PARAM_STR);
-    $stmt->bindValue(':product_condition', $product_condition, PDO::PARAM_STR);
-    $stmt->bindValue(':product_year',      $product_year,      PDO::PARAM_INT);
+    $stmt->bindValue(':product_material',  $product_material,  PDO::PARAM_STR);
+    $stmt->bindValue(':product_profile',   $product_profile,   PDO::PARAM_STR);
     $stmt->bindValue(':product_quantity',  $product_quantity,  PDO::PARAM_INT);
     $stmt->bindValue(':product_image',     $product_image,     PDO::PARAM_STR);
  
@@ -70,8 +70,8 @@ public function update($data) {
         fld_product_name = :product_name,
         fld_product_price = :product_price,
         fld_product_brand = :product_brand,
-        fld_product_condition = :product_condition,
-        fld_product_year = :product_year,
+        fld_product_material = :product_material,
+        fld_product_profile = :product_profile,
         fld_product_quantity = :product_quantity,
         fld_product_image = :product_image
     WHERE fld_product_num = :original_product_num";
@@ -83,8 +83,8 @@ public function update($data) {
     $product_name      = $data['product_name'];
     $product_price     = $data['product_price'];
     $product_brand     = $data['product_brand'];
-    $product_condition = $data['product_condition'];
-    $product_year      = $data['product_year'];
+    $product_material = $data['product_material'];
+    $product_profile      = $data['product_profile'];
     $product_quantity  = $data['product_quantity'];
     $product_image     = $data['product_image'] ?? '';
  
@@ -93,8 +93,8 @@ public function update($data) {
     $stmt->bindValue(':product_name',      $product_name,      PDO::PARAM_STR);
     $stmt->bindValue(':product_price',     $product_price);
     $stmt->bindValue(':product_brand',     $product_brand,     PDO::PARAM_STR);
-    $stmt->bindValue(':product_condition', $product_condition, PDO::PARAM_STR);
-    $stmt->bindValue(':product_year',      $product_year,      PDO::PARAM_INT);
+    $stmt->bindValue(':product_material',  $product_material,  PDO::PARAM_STR);
+    $stmt->bindValue(':product_profile',   $product_profile,   PDO::PARAM_STR);
     $stmt->bindValue(':product_quantity',  $product_quantity,  PDO::PARAM_INT);
     $stmt->bindValue(':product_image',     $product_image,     PDO::PARAM_STR);
  
