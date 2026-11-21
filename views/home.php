@@ -22,7 +22,7 @@ ob_start();
 
 <div class="row g-4 mt-5" style="padding: 0 5rem;">
     <div class="col-md-3">
-        <a href="products.php" class="text-decoration-none">
+        <a href="<?= BASE_URL ?>productcontroller" class="text-decoration-none">
             <div class="card p-4 h-100 text-center">
                 <i class="bi bi-box-seam text-primary" style="font-size: 3rem;"></i>
                 <h5 class="mt-3 mb-0 text-primary" style="white-space: nowrap;">Products</h5>
@@ -30,7 +30,7 @@ ob_start();
         </a>
     </div>
     <div class="col-md-3">
-        <a href="customers.php" class="text-decoration-none">
+        <a href="<?= BASE_URL ?>customercontroller" class="text-decoration-none">
             <div class="card p-4 h-100 text-center">
                 <i class="bi bi-people text-success" style="font-size: 3rem;"></i>
                 <h5 class="mt-3 mb-0 text-success" style="white-space: nowrap;">Customers</h5>
@@ -38,7 +38,7 @@ ob_start();
         </a>
     </div>
     <div class="col-md-3">
-        <a href="staffs.php" class="text-decoration-none">
+        <a href="<?= BASE_URL ?>staffcontroller" class="text-decoration-none">
             <div class="card p-4 h-100 text-center">
                 <i class="bi bi-person-badge text-warning" style="font-size: 3rem;"></i>
                 <h5 class="mt-3 mb-0 text-warning" style="white-space: nowrap;">Staffs</h5>
@@ -46,7 +46,7 @@ ob_start();
         </a>
     </div>
     <div class="col-md-3">
-        <a href="orders.php" class="text-decoration-none">
+        <a href="<?= BASE_URL ?>ordercontroller" class="text-decoration-none">
             <div class="card p-4 h-100 text-center">
                 <i class="bi bi-receipt text-danger" style="font-size: 3rem;"></i>
                 <h5 class="mt-3 mb-0 text-danger" style="white-space: nowrap;">Orders</h5>

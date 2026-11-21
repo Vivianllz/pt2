@@ -8,7 +8,7 @@
           <hr>                  
           <ul class="mynav nav nav-pills flex-column">
             <li class="nav-item mb-3 mt-2">
-              <a href="home.php" class="text-decoration-none text-white">
+              <a href="<?= BASE_URL ?>" class="text-decoration-none text-white">
                 <i class="bi bi-house-fill me-2"></i>
                 Home
               </a>
@@ -21,25 +21,25 @@
             </li>
             <!-- Add more menus -->
             <li class="nav-item mb-3">
-    <a href="products.php" class="text-decoration-none text-white">
+    <a href="<?= BASE_URL ?>productcontroller" class="text-decoration-none text-white">
         <i class="bi bi-box me-2"></i>
         Products
     </a>
 </li>
 <li class="nav-item mb-3">
-    <a href="customers.php" class="text-decoration-none text-white">
+    <a href="<?= BASE_URL ?>customercontroller" class="text-decoration-none text-white">
         <i class="bi bi-people me-2"></i>
         Customers
     </a>
 </li>
 <li class="nav-item mb-3">
-    <a href="staffs.php" class="text-decoration-none text-white">
+    <a href="<?= BASE_URL ?>staffcontroller" class="text-decoration-none text-white">
         <i class="bi bi-person-badge me-2"></i>
         Staffs
     </a>
 </li>
 <li class="nav-item mb-3">
-    <a href="orders.php" class="text-decoration-none text-white">
+    <a href="<?= BASE_URL ?>ordercontroller" class="text-decoration-none text-white">
         <i class="bi bi-cart me-2"></i>
         Orders
     </a>
