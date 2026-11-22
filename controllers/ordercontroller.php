@@ -4,13 +4,15 @@ class OrderController extends Controller {
     private $orderModel;
     private $customerModel;
     private $staffModel;
+    private $detailModel;
  
     public function __construct() {
         $this->orderModel = $this->model("ordermodel");
         $this->customerModel = $this->model("customermodel");
         $this->staffModel = $this->model("staffmodel");
+        $this->detailModel = $this->model("orderdetailmodel");
     }
- 
+
     public function index() {
         $this->view("orders", [
             "orders" => $this->orderModel->readAll(),
@@ -58,6 +60,22 @@ class OrderController extends Controller {
         $this->orderModel->delete($id);
         $this->index();
     }
+
+    public function invoice($orderNum) {
+    $order = $this->orderModel->readById($orderNum);
+
+    if (!$order) {
+        exit;
+    }
+
+    $details = $this->detailModel->readByOrder($orderNum);
+
+    $this->view("invoice", [
+        "order" => $order,
+        "details" => $details
+    ]);
+    }
+
 }
  
 ?>
