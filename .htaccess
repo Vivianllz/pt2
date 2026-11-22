@@ -1,5 +1,5 @@
 RewriteEngine On
-
+RewriteBase /users/a215514/pt2/
 # If the request is not pointing to a real file or folder
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
